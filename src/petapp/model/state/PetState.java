@@ -1,12 +1,11 @@
 package petapp.model.state;
 
-import petapp.model.pet.Pet;
+import petapp.model.pet.BasePet;
 import petapp.model.task.Task;
 
-public interface PetState
-{
+public interface PetState {
 
-    void handleTick(Pet pet);
+    void handleTick(BasePet pet);
 
-    void handleTask(Pet pet, Task task);
+    void handleTask(BasePet pet, Task task);
 }
