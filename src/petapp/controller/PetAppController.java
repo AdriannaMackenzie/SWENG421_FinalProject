@@ -33,7 +33,7 @@ public class PetAppController
     private Scheduler scheduler;
 
     private PetThemeChoice currentTheme;
-    private TaskFilterType currentFilter;
+    private Set<TaskFilterType> currentFilterTypes;
 
     public PetAppController(TaskRepository taskRepository,
                             TaskFilterService filterService)
@@ -96,11 +96,16 @@ public class PetAppController
         pet.applyTask(task);
     }
 
+    public void updateActiveFilters(Set<TaskFilterType> filters) 
+    {
+        this.currentFilterTypes = filters;
+        filterService.setActiveFilters(filters);
+    }
+
     // Apply a chosen filter to the task list
     public List<Task> getFilteredTasks(TaskFilterType filterType)
     {
-        this.currentFilter = filterType;
-        return filterService.getFilteredTasks(taskRepository.getAllTasks(), filterType);
+       return filterService.getFilteredTasks(taskRepository.getAllTasks());  
     }
 
     // Focus mode controls for GUI
