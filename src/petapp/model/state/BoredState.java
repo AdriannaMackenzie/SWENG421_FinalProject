@@ -7,20 +7,22 @@ public class BoredState implements PetState
 {
 
     @Override
-    public void handleTick(BasePet pet)
+    public PetState handleTick(BasePet pet)
     {
         // Bored pet gets more bored and less happy per tick than in Neutral
         pet.setHappiness(pet.getHappiness() - 3);
         pet.setBoredom(pet.getBoredom() + 3);
 
         // Check for transitions
-        if (pet.getHappiness() < 20 || pet.getBoredom() > 70) {
-            pet.setState(new StressedState());
+        if (pet.getHappiness() < 20 || pet.getBoredom() > 70)
+        {
+            return new HappyState();
         }
+        return this;
     }
 
     @Override
-    public void handleTask(BasePet pet, Task task)
+    public PetState handleTask(BasePet pet, Task task)
     {
         // Tasks are very helpful when bored
         pet.setHappiness(pet.getHappiness() + 8);
@@ -28,7 +30,9 @@ public class BoredState implements PetState
 
     if (pet.getHappiness() > 39 && pet.getBoredom() < 41)
     {
-        pet.setState(new NeutralState());
+        return new NeutralState();
     }
+    return this;
     }
+
 }

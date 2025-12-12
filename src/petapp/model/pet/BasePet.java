@@ -23,13 +23,13 @@ public class BasePet implements Pet
     @Override
     public void onTick()
     {
-        currentState.handleTick(this);
+        currentState = currentState.handleTick(this);
     }
 
     @Override
     public void applyTask(Task task)
     {
-        currentState.handleTask(this, task);
+        currentState = currentState.handleTask(this, task);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class BasePet implements Pet
         return currentState;
     }
 
+// TO DELETE
     public void setState(PetState state)
     {
         this.currentState = state;

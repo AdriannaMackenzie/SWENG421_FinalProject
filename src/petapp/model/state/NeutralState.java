@@ -7,7 +7,7 @@ public class NeutralState implements PetState
 {
 
     @Override
-    public void handleTick(BasePet pet)
+    public PetState handleTick(BasePet pet)
     {
         // Over time, happiness decays and boredom grows faster than in Happy state
         pet.setHappiness(pet.getHappiness() - 2);
@@ -16,12 +16,13 @@ public class NeutralState implements PetState
         // If happiness falls or boredom climbs beyond boundary, go to Bored
         if (pet.getHappiness() < 40 || pet.getBoredom() > 40)
         {
-            pet.setState(new BoredState());
+            return new BoredState();
         }
+        return this;
     }
 
     @Override
-    public void handleTask(BasePet pet, Task task)
+    public PetState handleTask(BasePet pet, Task task)
     {
         // Tasks increase happiness and reduce boredom moderately
         pet.setHappiness(pet.getHappiness() + 4);
@@ -29,7 +30,8 @@ public class NeutralState implements PetState
 
         if (pet.getHappiness() > 69 && pet.getBoredom() < 21)
         {
-        pet.setState(new HappyState());
+        return new HappyState();
         }
+        return this;
     }
 }
