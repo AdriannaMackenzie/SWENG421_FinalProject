@@ -1,8 +1,10 @@
-// Main.java
+import petapp.ui.DesktopPetApp;
 import javax.swing.SwingUtilities;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main
+{
+    public static void main(String[] args)
+    {
         SwingUtilities.invokeLater(() -> new DesktopPetApp().setVisible(true));
     }
 }

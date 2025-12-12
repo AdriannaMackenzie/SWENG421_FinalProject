@@ -3,16 +3,17 @@ package petapp.model.theme;
 public class PetSprite
 {
 
-    private final Object imageAssets;
+    private final String themeName;
 
-    public PetSprite(Object imageAssets)
+    public PetSprite(String themeName)
     {
-        this.imageAssets = imageAssets;
+        this.themeName = themeName.toLowerCase();
     }
 
-    public Object getImage()
+    public String getImageFileForState(String stateName)
     {
-        return imageAssets;
+        String state = stateName.toLowerCase();
+        return themeName + "_" + state + ".png";
     }
 }
 

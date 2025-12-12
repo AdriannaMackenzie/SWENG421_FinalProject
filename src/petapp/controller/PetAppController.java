@@ -103,7 +103,7 @@ public class PetAppController
     }
 
     // Apply a chosen filter to the task list
-    public List<Task> getFilteredTasks(TaskFilterType filterType)
+    public List<Task> getFilteredTasks()
     {
        return filterService.getFilteredTasks(taskRepository.getAllTasks());  
     }
@@ -119,7 +119,8 @@ public class PetAppController
 
     public void stopFocusMode()
     {
-        if (focusDecorator != null) {
+        if (focusDecorator != null)
+        {
             focusDecorator.setFocusActive(false);
         }
     }
